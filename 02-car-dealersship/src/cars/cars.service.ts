@@ -80,4 +80,9 @@ export class CarsService {
       this.cars.filter((car) => car.id !== id);
     }
   }
+
+  fillCarsWithData(cars: Car[]) {
+    console.log('Cars  :: ', cars);
+    this.cars = cars;
+  }
 }

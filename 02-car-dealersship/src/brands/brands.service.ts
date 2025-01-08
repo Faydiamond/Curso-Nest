@@ -4,6 +4,7 @@ import { v4 as uuid } from 'uuid';
 import { CreateBrandDto } from './dto/create-brand.dto';
 import { UpdateBrandDto } from './dto/update-brand.dto';
 import { Brand } from './entities/brand.entity';
+import { log } from 'node:console';
 
 @Injectable()
 export class BrandsService {
@@ -16,11 +17,19 @@ export class BrandsService {
   ];
 
   create(createBrandDto: CreateBrandDto) {
-    return 'This action adds a new brand';
+    const { nombre } = createBrandDto;
+    const brand: Brand = {
+      id: uuid(),
+      nombre: nombre.toLocaleLowerCase(),
+      createdAt: new Date().getTime(),
+    };
+
+    this.brands.push(brand);
+    return brand;
   }
 
   findAll() {
-    return `This action returns all brands`;
+    return this.brands;
   }
 
   findOne(id: string) {
@@ -31,11 +40,19 @@ export class BrandsService {
     return brand;
   }
 
-  update(id: number, updateBrandDto: UpdateBrandDto) {
-    return `This action updates a #${id} brand`;
+  update(id: string, updateBrandDto: UpdateBrandDto) {
+    let brand = this.findOne(id);
+    brand.updated = new Date().getTime();
+    brand.nombre = updateBrandDto.nombre;
+    return brand;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} brand`;
+  remove(id: String) {
+    this.brands.filter((brand) => brand.id !== id);
+  }
+
+  fillBrandWithSpeed(brands: Brand[]) {
+    console.log('Brands :: ', brands);
+    this.brands = brands;
   }
 }
