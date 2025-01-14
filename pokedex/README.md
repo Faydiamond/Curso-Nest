@@ -28,6 +28,20 @@ docker-compose up -d
 
 5. Resulta importante tener instalado docker en el equipo y que adicionalemnte este ejecutandose.
 
+5.5 Ejecuta el comando para subir la aplicacion yarn start:dev
+
+7. Clonar el archivo `.env.template` y renombrar la copia a `.env`
+
+8. Lllenar las variables de entorno
+
+9. Ejecutar el proyecto con el comando ` yarn start:dev`
+
+10. Reconstruir la base de datos con la semilla
+
+```
+localhost:3000/api/v1/seed
+```
+
 ## Stack usado
 
 - MongoDb
