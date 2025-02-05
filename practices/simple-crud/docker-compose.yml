@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  db:
+    image : postgres
+    restart : always
+    environment:
+      POSTGRES_USER : developer
+      POSTGRES_PASSWORD :  developer.26546
+      POSTGRES_DB : test_one
+    volumes:
+      - .data:/var/lib/postgres/data
+    ports:
+      - 5499:5432
